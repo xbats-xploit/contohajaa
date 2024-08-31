@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XbatsStore12</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #007bff;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #5a5a5a;
+        }
+
+        .diamond-info {
+            margin: 20px 0;
+        }
+
+        .diamond-info img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 8px;
+            /* Hapus border biru di sekeliling gambar */
+            border: none; 
+        }
+
+        .diamond-info p {
+            font-size: 18px;
+            color: #555;
+            margin: 10px 0;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .product-card h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .product-card .price {
+            font-size: 18px;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+
+        .product-card .button {
+            padding: 10px 15px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .product-card .button:hover {
+            background-color: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#" onclick="showPage('home')">Beranda</a>
+        <a href="#" onclick="showPage('contact')">Hubungi Kami</a>
+    </div>
+
+    <div id="home" class="container">
+        <h1>JUAL ALL KEBUTUHAN HOSTING🔥</h1>
+        <div class="diamond-info">
+            <img src="https://telegra.ph/file/3e1cfd61db16605336afa.jpg" alt="Diamond" />
+            <p>Diamond berkualitas tinggi untuk game favorit Anda. Dapatkan diamond Anda dengan harga terbaik di sini!</p>
+        </div>
+
+        <h2>All Hosting</h2>
+        <div class="product-card">
+            <img src="https://telegra.ph/file/dc262f60313dd3040ad4a.jpg" alt="Panel Pterodactyl">
+            <h2>Panel Pterodactyl</h2>
+            1gb-unli
+            <div class="price">Rp1k-12k</div>
+            <button class="button" onclick="buyPanelPterodactyl(1gb-unli)">Buy</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://telegra.ph/file/a81303a109695368621be.jpg" alt="Diamond Medium">
+            <h2>Vps DigitalOcean</h2>
+            <div class="price">20k-250k</div>
+            <button class="button" onclick="buyvps(ram3-ram14)">Buy</button>
+        </div>
+
+        <div class="product-card">
+            <img src="diamond-large.jpg" alt="Diamond Large">
+            <h2>1000 Diamond</h2>
+            <div class="price">Rp8.500.000</div>
+            <button class="button" onclick="buyDiamond(1000, 8500000)">Buy</button>
+        </div>
+    </div>
+
+    <div id="contact" class="container hidden">
+        <h1>Hubungi Kami</h1>
+        <form id="contactForm">
+            <label for="contactName">Nama:</label>
+            <input type="text" id="contactName" placeholder="Masukkan Nama" required>
+
+            <label for="contactEmail">Email:</label>
+            <input type="email" id="contactEmail" placeholder="Masukkan Email" required>
+
+            <label for="messageContent">Pesan:</label>
+            <textarea id="messageContent" rows="4" placeholder="Masukkan Pesan" required></textarea>
+
+            <button type="submit" class="button">Kirim Pesan</button>
+            <div id="contactMessage" class="message"></div>
+        </form>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            document.getElementById('home').classList.add('hidden');
+            document.getElementById('contact').classList.add('hidden');
+            document.getElementById(pageId).classList.remove('hidden');
+        }
+
+        function buyDiamond(diamondCount, price) {
+            const message = `Pembelian Diamond Game%0AJumlah: ${diamondCount}%0ATotal Harga: Rp${price.toLocaleString()}`;
+            // Redirect to Telegram with the message
+            window.location.href = `https://t.me/kulbat_683?text=${encodeURIComponent(message)}`;
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const contactName = document.getElementById('contactName').value;
+            const contactEmail = document.getElementById('contactEmail').value;
+            const messageContent = document.getElementById('messageContent').value;
+            const contactMessage = document.getElementById('contactMessage');
+
+            if (!contactName || !contactEmail || !messageContent) {
+                contactMessage.textContent = 'Mohon lengkapi semua informasi.';
+                return;
+            }
+
+            contactMessage.textContent = 'Pesan Anda telah dikirim!';
+            
+            // Reset form
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactEmail').value = '';
+            document.getElementById('messageContent').value = '';
+        });
+
+        // Default page
+        showPage('home');
+    </script>
+</body>
+</html>
